@@ -15,6 +15,7 @@ ExamplePlanner::ExamplePlanner(ros::NodeHandle& nh) :
     ROS_WARN("[example_planner] param max_a not found");
   }
 
+
   // create publisher for RVIZ markers
   pub_markers_ =
       nh.advertise<visualization_msgs::MarkerArray>("trajectory_markers", 0);
