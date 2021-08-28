@@ -1,0 +1,19 @@
+<launch>
+    <arg name="mav_name" default="hummingbird"/>
+
+    <group ns="$(arg mav_name)">
+
+        <!--- Trajectory planner -->
+        <node name="planner" pkg="mav_trajectory_generation_example" type="trajectory_generation_example" output="screen">
+            <rosparam command="load" file="$(find mav_trajectory_generation_example)/cfg/flightgoggle_drone_params.yaml"/>
+            <remap from="uav_pose" to="ground_truth/odometry"/>
+        </node>
+
+        <!--- Trajectory sampler -->
+        <node name="sampler" pkg="mav_trajectory_generation_ros" type="trajectory_sampler_node" output="screen">
+            <remap from="path_segments_4D" to="trajectory"/>
+        </node>
+
+    </group>
+
+</launch>
